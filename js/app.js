@@ -37,7 +37,20 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+const allCards = document.querySelectorAll('.card');
+
 // flip card on click
+
+document.querySelector('.deck').addEventListener('click', event => {
+    const selectedCard = event.target;
+    if (selectedCard.classList.contains('card')) {
+        flipCard(selectedCard);
+    }
+});
+
+function flipCard(selectedCard) {
+    selectedCard.classList.add('open', 'show');
+}
 
 // check if 2 flipped cards match, = add 'match' class, != remove 'open' & 'show' class
 
