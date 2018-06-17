@@ -36,3 +36,19 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+// flip card on click
+
+// check if 2 flipped cards match, = add 'match' class, != remove 'open' & 'show' class
+
+// create Array to hold all icons
+
+// if all cards match -> display modal
+
+// create timer - start on first card click & stop when all cards are matched
+
+// create move counter - add 1 move to counter for every 2 card clicks
+
+// create star rating - starts with 3 stars, remove 1 star after 20 moves, remove 2 stars after 26 moves
+
+// create restart button - resets timer, move counter, card classes, and shuffles cards
