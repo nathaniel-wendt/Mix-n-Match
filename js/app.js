@@ -38,21 +38,46 @@ function shuffle(array) {
  */
 
 const allCards = document.querySelectorAll('.card');
+let selectedCards = [];
 
 // flip card on click
 
 document.querySelector('.deck').addEventListener('click', event => {
-    const selectedCard = event.target;
-    if (selectedCard.classList.contains('card')) {
-        flipCard(selectedCard);
+    const currentCard = event.target;
+    if (currentCard.classList.contains('card') &&
+        !selectedCards.includes(currentCard) &&
+        selectedCards.length < 2 &&
+        !currentCard.classList.contains('match')) {
+            flipCard(currentCard);
+            addCard(currentCard);
+        if (selectedCards.length === 2) {
+            checkForMatch();
+        }
     }
 });
 
-function flipCard(selectedCard) {
-    selectedCard.classList.add('open', 'show');
+function flipCard(currentCard) {
+    currentCard.classList.toggle('open');
+    currentCard.classList.toggle('show');
 }
 
-// check if 2 flipped cards match, = add 'match' class, != remove 'open' & 'show' class
+function addCard(currentCard) {
+    selectedCards.push(currentCard);
+}
+
+function checkForMatch() {
+    if (selectedCards[0].firstElementChild.className === selectedCards[1].firstElementChild.className) {
+        selectedCards[0].classList.toggle('match');
+        selectedCards[1].classList.toggle('match');
+        selectedCards = [];
+    } else {
+        setTimeout(() => {
+            flipCard(selectedCards[0]);
+            flipCard(selectedCards[1]);
+            selectedCards = [];
+        }, 500);
+    }
+};
 
 // create Array to hold all icons
 
