@@ -1,14 +1,17 @@
-/*
- * Create a list that holds all of your cards
- */
+const cards = [
+    "fa-diamond", "fa-diamond",
+    "fa-bomb", "fa-bomb"
+    "fa-paper-plane-o", "fa-paper-plane-o",
+    "fa-anchor", "fa-anchor",
+    "fa-leaf", "fa-leaf",
+    "fa-cube", "fa-cube",
+    "fa-bicycle", "fa-bicycle",
+    "fa-bolt", "fa-bolt",
+  ];
 
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+function generateCards(card) {
+    return `<li class="card"><i class="fa ${card}"></i> </li>`;
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -37,7 +40,16 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-const allCards = document.querySelectorAll('.card');
+function startGame() {
+    const deck = document.querySelector('.deck');
+    let cardHTML = shuffle(cards).map(function(card) {
+        return generateCards(card);
+    });
+    deck.innerHTML = cardHTML.join('');
+}
+
+startGame();
+
 let selectedCards = [];
 
 // flip card on click
@@ -79,7 +91,6 @@ function checkForMatch() {
     }
 };
 
-// create Array to hold all icons
 
 // if all cards match -> display modal
 
