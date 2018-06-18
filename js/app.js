@@ -1,6 +1,6 @@
 const cards = [
     "fa-diamond", "fa-diamond",
-    "fa-bomb", "fa-bomb"
+    "fa-bomb", "fa-bomb",
     "fa-paper-plane-o", "fa-paper-plane-o",
     "fa-anchor", "fa-anchor",
     "fa-leaf", "fa-leaf",
