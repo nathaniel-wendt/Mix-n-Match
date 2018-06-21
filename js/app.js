@@ -73,6 +73,7 @@ document.querySelector('.deck').addEventListener('click', event => {
         if (selectedCards.length === 2) {
             checkForMatch();
             addMove();
+            checkStarScore();
         }
     }
 });
@@ -99,6 +100,19 @@ function checkForMatch() {
         }, 500);
     }
 };
+
+function checkStarScore() {
+    const starOne = document.querySelector('.star-one');
+    const starTwo = document.querySelector('.star-two');
+    const starThree = document.querySelector('.star-three');
+
+    if (moveCount > 14) {
+        starOne.style.display = 'none';
+    } if (moveCount > 18) {
+        starTwo.style.display = 'none';
+    }
+};
+
 
 
 // if all cards match -> display modal
