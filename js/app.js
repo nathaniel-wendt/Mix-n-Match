@@ -102,14 +102,11 @@ function checkForMatch() {
 };
 
 function checkStarScore() {
-    const starOne = document.querySelector('.star-one');
-    const starTwo = document.querySelector('.star-two');
-    const starThree = document.querySelector('.star-three');
-
+    const starList = document.getElementsByTagName('li');
     if (moveCount > 14) {
-        starOne.style.display = 'none';
+        starList[0].innerHTML = '<i class="fa fa-star-o"></i>';
     } if (moveCount > 18) {
-        starTwo.style.display = 'none';
+        starList[1].innerHTML = '<i class="fa fa-star-o"></i>';
     }
 };
 
