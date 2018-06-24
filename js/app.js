@@ -102,7 +102,7 @@ function checkForMatch() {
 };
 
 function checkStarScore() {
-    const starList = document.getElementsByTagName('li');
+    const starList = document.querySelectorAll('.stars li');
     if (moveCount > 14) {
         starList[0].innerHTML = '<i class="fa fa-star-o"></i>';
     } if (moveCount > 18) {
