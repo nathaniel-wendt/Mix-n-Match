@@ -46,6 +46,7 @@ function newGame() {
     moveCount = 0;
     moves.textContent = 0;
     shuffleDeck();
+    checkStarScore();
 }
 
 newGame();
@@ -59,6 +60,7 @@ function shuffleDeck() {
     deck.innerHTML = cardHTML.join('');
 };
 
+document.querySelector('.restart').addEventListener('click', newGame);
 
 // flip card on click
 
@@ -107,9 +109,11 @@ function checkStarScore() {
         starList[0].innerHTML = '<i class="fa fa-star-o"></i>';
     } if (moveCount > 18) {
         starList[1].innerHTML = '<i class="fa fa-star-o"></i>';
+    } else if (moveCount < 2) {
+        starList[0].innerHTML = '<i class="fa fa-star"></i>';
+        starList[1].innerHTML = '<i class="fa fa-star"></i>';
     }
 };
-
 
 
 // if all cards match -> display modal
