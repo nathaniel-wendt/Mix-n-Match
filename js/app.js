@@ -1,5 +1,7 @@
 const timer = document.querySelector('.timer');
 const moves = document.querySelector('.moves');
+const deck = document.querySelector('.deck');
+const restart = document.querySelector('.restart');
 const cards = [
     "fa-diamond", "fa-diamond",
     "fa-bomb", "fa-bomb",
@@ -16,8 +18,7 @@ let moveCount = 0;
 let minutes = 0;
 let seconds = 0;
 let time;
-let timerOff = true;
-
+let timerOn = false;
 
 function addMove() {
     moveCount++;
@@ -42,10 +43,19 @@ function startTimer() {
     }, 1000);
 }
 
-function stopTimer() {
+function resetTimer() {
     clearInterval(time);
     minutes = 0;
     seconds = 0;
+    timerOn = false;
+    deck.removeEventListener('click', checkTimer);
+}
+
+function checkTimer() {
+    if (!timerOn) {
+        startTimer();
+        timerOn = true;
+    }
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -59,7 +69,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
@@ -75,13 +84,13 @@ function newGame() {
     timer.textContent = "- : --";
     shuffleDeck();
     checkStarScore();
-    stopTimer();
+    resetTimer();
+    deck.addEventListener('click', checkTimer);
+    restart.addEventListener('click', newGame);
 }
-
 newGame();
 
 function shuffleDeck() {
-    const deck = document.querySelector('.deck');
     let cardHTML = shuffle(cards).map(function(card) {
         return generateCards(card);
     });
@@ -91,7 +100,7 @@ function shuffleDeck() {
 
 // flip card on click
 
-document.querySelector('.deck').addEventListener('click', event => {
+deck.addEventListener('click', event => {
     const currentCard = event.target;
     if (currentCard.classList.contains('card') &&
         !selectedCards.includes(currentCard) &&
@@ -141,16 +150,3 @@ function checkStarScore() {
         starList[1].innerHTML = '<i class="fa fa-star"></i>';
     }
 };
-
-document.querySelector('.restart').addEventListener('click', newGame);
-document.querySelector('.card').addEventListener('click', startTimer);
-
-// if all cards match -> display modal
-
-// create timer - start on first card click & stop when all cards are matched
-
-// create move counter - add 1 move to counter for every 2 card clicks
-
-// create star rating - starts with 3 stars, remove 1 star after 20 moves, remove 2 stars after 26 moves
-
-// create restart button - resets timer, move counter, card classes, and shuffles cards
