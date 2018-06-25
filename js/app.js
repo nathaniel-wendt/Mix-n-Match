@@ -136,13 +136,19 @@ function checkForMatch() {
 
 function checkStarScore() {
     const starList = document.querySelectorAll('.stars li');
-    if (moveCount > 18) {
-        starList[1].innerHTML = '<i class="fa fa-star-o"></i>';
+    if (moveCount > 20) {
+        starList[3].innerHTML = '<i class="fa fa-star-o"></i>';
+    } else if (moveCount > 17) {
+        starList[2].innerHTML = '<i class="fa fa-star-o"></i>';
     } else if (moveCount > 14) {
+        starList[1].innerHTML = '<i class="fa fa-star-o"></i>';
+    } else if (moveCount > 11) {
         starList[0].innerHTML = '<i class="fa fa-star-o"></i>';
     } else {
         starList[0].innerHTML = '<i class="fa fa-star"></i>';
         starList[1].innerHTML = '<i class="fa fa-star"></i>';
+        starList[2].innerHTML = '<i class="fa fa-star"></i>';
+        starList[3].innerHTML = '<i class="fa fa-star"></i>';
     }
 };
 
@@ -160,7 +166,7 @@ function displayModal() {
     const displayScore = document.querySelector('.modal-score');
     modal.classList.remove('hidden');
     message.textContent = `You finished in ${minutes}:${seconds} using only ${moveCount} moves!`;
-    displayScore.textContent = `${starScore} Star performance!`;
+    displayScore.textContent = `${starScore} out of 5 Star performance!`;
 }
 
 function hideModal() {
