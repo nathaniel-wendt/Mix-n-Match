@@ -43,6 +43,10 @@ function startTimer() {
     }, 1000);
 }
 
+function stopTimer() {
+    clearInterval(time);
+}
+
 function resetTimer() {
     clearInterval(time);
     minutes = 0;
@@ -99,7 +103,7 @@ deck.addEventListener('click', event => {
             addMove();
             checkStarScore();
         }
-    }
+    }   checkGameWon();
 });
 
 // Toggle 'open' & 'show' CSS classes to simulate card flip
@@ -139,6 +143,14 @@ function checkStarScore() {
         starList[1].innerHTML = '<i class="fa fa-star"></i>';
     }
 };
+
+function checkGameWon() {
+    const matchList = document.querySelectorAll('li.match').length;
+    if (matchList === 4) {
+        stopTimer();
+        console.log(`Congratulations! You finished the game in ${minutes}:${seconds} using only ${moveCount} moves!`);
+    }
+}
 
 function newGame() {
     moveCount = 0;
