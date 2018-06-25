@@ -77,19 +77,6 @@ function generateCards(card) {
     return `<li class="card"><i class="fa ${card}"></i> </li>`;
 }
 
-// 
-function newGame() {
-    moveCount = 0;
-    moves.textContent = 0 + " Moves";
-    timer.textContent = "- : --";
-    shuffleDeck();
-    checkStarScore();
-    resetTimer();
-    deck.addEventListener('click', checkTimer);
-    restart.addEventListener('click', newGame);
-}
-newGame();
-
 function shuffleDeck() {
     let cardHTML = shuffle(cards).map(function(card) {
         return generateCards(card);
@@ -98,8 +85,7 @@ function shuffleDeck() {
     deck.innerHTML = cardHTML.join('');
 };
 
-// flip card on click
-
+// Flip eligible cards (2 max), add them to selectedCards Array, & check for match
 deck.addEventListener('click', event => {
     const currentCard = event.target;
     if (currentCard.classList.contains('card') &&
@@ -116,15 +102,18 @@ deck.addEventListener('click', event => {
     }
 });
 
+// Toggle 'open' & 'show' CSS classes to simulate card flip
 function flipCard(currentCard) {
     currentCard.classList.toggle('open');
     currentCard.classList.toggle('show');
 }
 
+// Add card to selectedCards Array for match comparison
 function addCard(currentCard) {
     selectedCards.push(currentCard);
 }
 
+// If cards match, toggle 'match' CSS class & empty selectedCards Array, else flip cards & empty Array after delay
 function checkForMatch() {
     if (selectedCards[0].firstElementChild.className === selectedCards[1].firstElementChild.className) {
         selectedCards[0].classList.toggle('match');
@@ -150,3 +139,15 @@ function checkStarScore() {
         starList[1].innerHTML = '<i class="fa fa-star"></i>';
     }
 };
+
+function newGame() {
+    moveCount = 0;
+    moves.textContent = 0 + " Moves";
+    timer.textContent = "- : --";
+    shuffleDeck();
+    checkStarScore();
+    resetTimer();
+    deck.addEventListener('click', checkTimer);
+    restart.addEventListener('click', newGame);
+}
+newGame();
