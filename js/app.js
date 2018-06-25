@@ -1,7 +1,5 @@
-
-let selectedCards = [];
-let moveCount = 0;
-
+const timer = document.querySelector('.timer');
+const moves = document.querySelector('.moves');
 const cards = [
     "fa-diamond", "fa-diamond",
     "fa-bomb", "fa-bomb",
@@ -13,12 +11,41 @@ const cards = [
     "fa-bolt", "fa-bolt",
   ];
 
-// moves counter
-const moves = document.querySelector('.moves');
+let selectedCards = [];
+let moveCount = 0;
+let minutes = 0;
+let seconds = 0;
+let time;
+let timerOff = true;
+
 
 function addMove() {
     moveCount++;
-    moves.textContent = moveCount;
+    if (moveCount === 1) {
+        moves.textContent = moveCount + " Move";
+    } else {
+        moves.textContent = moveCount + " Moves";
+    }
+};
+
+function startTimer() {
+    time = setInterval(() => {
+    seconds++;
+    timer.textContent = `${minutes} : ${seconds}`;
+    if (seconds < 10) {
+        timer.textContent = `${minutes} : 0${seconds}`;
+    }
+        if (seconds === 59) {
+            minutes++;
+            seconds = 0;
+        }
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(time);
+    minutes = 0;
+    seconds = 0;
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -44,9 +71,11 @@ function generateCards(card) {
 // 
 function newGame() {
     moveCount = 0;
-    moves.textContent = 0;
+    moves.textContent = 0 + " Moves";
+    timer.textContent = "- : --";
     shuffleDeck();
     checkStarScore();
+    stopTimer();
 }
 
 newGame();
@@ -59,8 +88,6 @@ function shuffleDeck() {
 
     deck.innerHTML = cardHTML.join('');
 };
-
-document.querySelector('.restart').addEventListener('click', newGame);
 
 // flip card on click
 
@@ -99,7 +126,7 @@ function checkForMatch() {
             flipCard(selectedCards[0]);
             flipCard(selectedCards[1]);
             selectedCards = [];
-        }, 500);
+        }, 1000);
     }
 };
 
@@ -115,6 +142,8 @@ function checkStarScore() {
     }
 };
 
+document.querySelector('.restart').addEventListener('click', newGame);
+document.querySelector('.card').addEventListener('click', startTimer);
 
 // if all cards match -> display modal
 
