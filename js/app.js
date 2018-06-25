@@ -2,6 +2,8 @@ const timer = document.querySelector('.timer');
 const moves = document.querySelector('.moves');
 const deck = document.querySelector('.deck');
 const restart = document.querySelector('.restart');
+const button = document.querySelector('.button');
+const modal = document.querySelector('.modal');
 const cards = [
     "fa-diamond", "fa-diamond",
     "fa-bomb", "fa-bomb",
@@ -146,10 +148,23 @@ function checkStarScore() {
 
 function checkGameWon() {
     const matchList = document.querySelectorAll('li.match').length;
-    if (matchList === 4) {
+    if (matchList === 16) {
         stopTimer();
-        console.log(`Congratulations! You finished the game in ${minutes}:${seconds} using only ${moveCount} moves!`);
+        displayModal();
     }
+}
+
+function displayModal() {
+    const message = document.querySelector('.modal-message');
+    const starScore = document.querySelectorAll('.fa-star').length;
+    const displayScore = document.querySelector('.modal-score');
+    modal.classList.remove('hidden');
+    message.textContent = `You finished in ${minutes}:${seconds} using only ${moveCount} moves!`;
+    displayScore.textContent = `${starScore} Star performance!`;
+}
+
+function hideModal() {
+    modal.classList.add('hidden');
 }
 
 function newGame() {
@@ -159,7 +174,9 @@ function newGame() {
     shuffleDeck();
     checkStarScore();
     resetTimer();
+    hideModal();
     deck.addEventListener('click', checkTimer);
     restart.addEventListener('click', newGame);
+    button.addEventListener('click', newGame);
 }
 newGame();

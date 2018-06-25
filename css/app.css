@@ -111,3 +111,63 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * Styles for the Win Modal
+ */
+
+ .hidden {
+    display: none;
+}
+
+ .modal-background {
+     position: fixed;
+     top: 0;
+     left: 0;
+     height: 100%;
+     width: 100%;
+     overflow: hidden;
+     background: rgba(0, 0, 0, 0.60);
+ }
+
+ .modal-container {
+     position: fixed;
+     width: 400px;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -100%);
+     background: #fff;
+     border-radius: 15px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+ }
+
+ .modal-header {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.modal-message,
+.modal-score {
+    margin: 4px;
+}
+
+.button {
+    background-color: #32C8BB;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 25px 0;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #8590C2;
+    cursor: pointer;
+}
