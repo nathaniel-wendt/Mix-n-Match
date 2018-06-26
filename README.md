@@ -18,5 +18,5 @@ Begin by clicking to turn over any two cards. If the cards match, they will turn
 • Game tracks the number of moves the player has made (flipping two cards counts as one move).<br />
 • Game displays a star rating (from 1 to 5) that reflects the player's performance. Winning with fewer moves results in a higher score.<br />
 • Game tracks time, starting on first card flip and stops when all cards are matched.<br />
-• When a user wins the game, a modal appears to congradulate them. It tells the user how much time it took to win the game, and what their star rating was.<br />
-• A reset button that allows the player to reset the game board, the timer, and the star rating.<br />
+• When a user wins the game, a modal appears to congratulate them. Telling the user how much time it took to win the game, and what their star rating was.<br />
+• A reset button that allows the player to reset the game board, the timer, and the star rating any time during the game.<br />
