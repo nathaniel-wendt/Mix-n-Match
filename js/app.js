@@ -29,7 +29,7 @@ function addMove() {
     } else {
         moves.textContent = moveCount + " Moves";
     }
-};
+}
 
 function startTimer() {
     time = setInterval(() => {
@@ -89,7 +89,7 @@ function shuffleDeck() {
     });
 
     deck.innerHTML = cardHTML.join('');
-};
+}
 
 // Flip eligible cards (2 max), add them to selectedCards Array, & check for match
 deck.addEventListener('click', event => {
@@ -132,7 +132,7 @@ function checkForMatch() {
             selectedCards = [];
         }, 1000);
     }
-};
+}
 
 function checkStarScore() {
     const starList = document.querySelectorAll('.stars li');
@@ -150,7 +150,7 @@ function checkStarScore() {
         starList[2].innerHTML = '<i class="fa fa-star"></i>';
         starList[3].innerHTML = '<i class="fa fa-star"></i>';
     }
-};
+}
 
 function checkGameWon() {
     const matchList = document.querySelectorAll('li.match').length;
